@@ -218,15 +218,13 @@ while(true){
   }
 
 
-  if( (count($newWhip) == 3) && ( trim($newWhip[2]) == "true"))
+  if( (count($newWhip) >= 3) && ( trim($newWhip[2]) == "true"))
   {
     $param2 = $truVal;
-    var_dump($param2);
   }
-  else if( (count($newWhip) == 3) && (trim($newWhip[2]) == "false"))
+  else if((count($newWhip) >= 3) && (trim($newWhip[2]) == "false"))
   {
     $param2 = $falsVal;
-    var_dump($param2);
   }
 
 

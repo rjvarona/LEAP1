@@ -158,6 +158,8 @@ assert((interp((new Expression())->_setFuncName("majority", $truVal, $truVal, $t
 assert((interp((new Expression())->_setFuncName("majority", $falsVal, $falsVal, $falsVal))) ==  false);
 
 
+//var_dump((new Expression())->_setFuncName("majority", $truVal, $truVal, $truVal));
+
 //--------------------------------------------------interpreter---------------------------------------------------------------------------------
 function interp($obj){
   global $_stdLib;
@@ -190,12 +192,58 @@ function interp($obj){
   }
 }
 
-//var_dump($orTest);
+//------------------------------------------getting input user----------------------------------------------------------------------------------------------
+// and true false
+// not true
+// majority 1 2 3
+// equals true and false
 
-//echo $orTest->param1;
+while(true){
+  echo "Please enter TrueExpression: ";
+  $handle = fopen ("php://stdin","r");
+  $line = fgets($handle);
+  $newWhip = explode(" ", $line);
+
+  $paraml = new Expression();
+  $param2 = new Expression();
+  $param3 = new Expression();
+
+  if( trim($newWhip[1]) == "true")
+  {
+    $param1 = $truVal;
+  }
+  else if( trim($newWhip[1]) == "false")
+  {
+    $param1 = $falsVal;
+  }
 
 
-//based on class creation we will interp the function
+  if( (count($newWhip) == 3) && ( trim($newWhip[2]) == "true"))
+  {
+    $param2 = $truVal;
+    var_dump($param2);
+  }
+  else if( (count($newWhip) == 3) && (trim($newWhip[2]) == "false"))
+  {
+    $param2 = $falsVal;
+    var_dump($param2);
+  }
 
+
+
+  if( (count($newWhip) == 4) && ( trim($newWhip[3]) == "true"))
+  {
+    $param3 = $truVal;
+  }
+  else if((count($newWhip) == 4) &&  (trim($newWhip[3]) == "false"))
+  {
+    $param3 = $falsVal;
+  }
+
+
+  var_dump(interp((new Expression())->_setFuncName($newWhip[0], $param1, $param2, $param3)));
+
+  echo "\n";
+}
 
 ?>
